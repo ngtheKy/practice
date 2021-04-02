@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 
-const InputData = (props) => {
+const InputData = () => {
 
-    const [value, setValue] = useState(() => [{ a: '0', b: '0', c: '0', n: '0' }])
+    const [value, setValue] = useState(() => [{ a: '', b: '', c: '', n: '' }])
 
     return (
         <View style={styles.container}>
@@ -15,7 +15,6 @@ const InputData = (props) => {
                     b = {value.b}{'\n'}
                     c = {value.c}{'\n'}
                 </Text>
-
                 <TextInput
                     id='a'
                     style={styles.txtInput}

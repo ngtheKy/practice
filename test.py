@@ -3,10 +3,12 @@ from transformers import BertForQuestionAnswering
 import torch
 
 # Initialize tokenizer for corpus of bert-large-uncased
-tokenizer = BertTokenizer.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+tokenizer = BertTokenizer.from_pretrained(
+    'bert-large-uncased-whole-word-masking-finetuned-squad')
 
 # Initialize model BertForQuestionAnswering for bert-large-uncased
-model = BertForQuestionAnswering.from_pretrained('bert-large-uncased-whole-word-masking-finetuned-squad')
+model = BertForQuestionAnswering.from_pretrained(
+    'bert-large-uncased-whole-word-masking-finetuned-squad')
 
 
 def answer_question(question, answer_text):
@@ -33,7 +35,7 @@ def answer_question(question, answer_text):
     # ======== Evaluate ========
     # Dự báo phân phối xác suất của vị trí của từ start và từ end trong chuỗi concatenate <question, answer_text> mà chứa kết quả cho câu trả lời.
     start_scores, end_scores = model(torch.tensor([input_ids]),  # chuỗi index biểu thị cho inputs.
-                                token_type_ids=torch.tensor([segment_ids]))  # chuỗi index thành phần segment câu để phân biệt giữa câu question và câu answer_text
+                                     token_type_ids=torch.tensor([segment_ids]))  # chuỗi index thành phần segment câu để phân biệt giữa câu question và câu answer_text
 
     # ======== Reconstruct Answer ========
     # Tìm ra vị trí start, end với score là cao nhất
@@ -60,11 +62,11 @@ def answer_question(question, answer_text):
     print('Answer: "' + answer + '"')
 
 
-question = ""
-paragraph = ""
+# question = ""
+# paragraph = ""
 
-# question = "ai là người đặt chân lên mặt trăng?"
-# paragraph = "Truyền thông Mỹ ngày 25/8 đưa tin nhà du hành vũ trụ Neil Armstrong, người đầu tiên trong lịch sử đặt chân lên Mặt Trăng đã qua đời, thọ 82 tuổi. Hồi đầu tháng này, ông Armstrong đã phải trải qua ca phẫu thuật liên quan tới bệnh tim sau khi các bác sĩ phát hiện ông bị nghẽn động mạch vành."
+question = "ai là người đặt chân lên mặt trăng?"
+paragraph = "Truyền thông Mỹ ngày 25/8 đưa tin nhà du hành vũ trụ Neil Armstrong, người đầu tiên trong lịch sử đặt chân lên Mặt Trăng đã qua đời, thọ 82 tuổi. Hồi đầu tháng này, ông Armstrong đã phải trải qua ca phẫu thuật liên quan tới bệnh tim sau khi các bác sĩ phát hiện ông bị nghẽn động mạch vành."
 
 
 answer_question(question, paragraph)

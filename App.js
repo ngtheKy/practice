@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, StyleSheet } from 'react-native'
+import Login from './components/login'
+import Todo from './components/todolist'
 import InputData from './InputData'
 
 const App = () => {
 
   return (
     <View style={styles.container}>
-      <InputData />
+      {/* <InputData /> */}
+      {/* <Todo /> */}
+      <Login />
     </View>
   )
 }
